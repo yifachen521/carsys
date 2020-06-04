@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qf.dao.OrderDao">
+    <select id="carInfo" resultType="com.qf.pojo.SysCar">
+        select * from sys_car where id=#{id}
+    </select>
+
+    <select id="findAllorder" resultType="Integer">
+        select count(1) from sys_order where uid=#{uid}
+    </select>
+
+    <resultMap id="myresultMap" type="com.qf.pojo.Order">
+        <id property="oid" column="id"></id>
+        <result property="backcity" column="back"></result>
+        <result property="getcity" column="get"></result>
+        <result property="cname" column="NAME"></result>
+        <result property="oprice" column="oprice"></result>
+        <result property="ostatus" column="status"></result>
+    </resultMap>
+
+    <select id="findMyOrder" resultMap="myresultMap">
+       select s1.name as get, s2.name as back,o.*,c.NAME from sys_order as o
+        RIGHT JOIN sys_car as c on
+        o.cid=c.id
+        RIGHT JOIN sys_city as s1
+        on
+        s1.id= o.getid
+        RIGHT JOIN sys_city  as s2
+        on
+        s2.id= o.backid
+        where uid=#{uid}
+    </select>
+
+    <insert id="addorder">
+       insert  into
+        sys_order(cid,uid,getid,backid,oprice,status)
+        values (#{cid},#{uid},#{getid},#{backid},#{oprice},#{status})
+
+    </insert>
+
+    <delete id="delOrderById" >
+        delete from sys_order where id=#{oid}
+    </delete>
+</mapper>
+

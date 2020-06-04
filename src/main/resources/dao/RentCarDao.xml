@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qf.dao.RentCarDao">
+
+    <select id="select1" resultType="com.qf.pojo.SysCity">
+        select * from sys_city where pid=#{pid}
+    </select>
+
+    <select id="selectCar" resultType="com.qf.pojo.SysCar">
+        select * from sys_car where cid=#{cid}
+    </select>
+
+    <select id="getcheCity" resultType="com.qf.pojo.SysCity">
+        select * from sys_city where id=#{getid}
+    </select>
+
+    <select id="backcheCity" resultType="com.qf.pojo.SysCity">
+        select * from sys_city where id=#{backid}
+    </select>
+
+    <select id="chooseCarPrice" resultType="com.qf.pojo.SysCar">
+        select * from sys_car where cid=#{cid} order by price
+    </select>
+
+    <select id="chooseCarSitNum" resultType="com.qf.pojo.SysCar">
+        select * from sys_car where cid=#{cid} order by number
+    </select>
+</mapper>

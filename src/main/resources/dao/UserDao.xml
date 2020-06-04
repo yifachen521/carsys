@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qf.dao.UserDao">
+    <select id="clickLogin" resultType="com.qf.pojo.SysUser">
+        select * from sys_user where tel=#{tel}
+    </select>
+
+    <select id="findUserById" resultType="com.qf.pojo.SysUser">
+        select * from sys_user where id=#{id}
+    </select>
+
+
+    <insert id="addUserByregister"  useGeneratedKeys="true" keyProperty="id">
+        insert  into sys_user(tel,password,email,invitation)
+         values (#{tel},#{password},#{email},#{invitation})
+    </insert>
+
+
+    <update id="updateTel">
+        update sys_user set tel=#{tel} where id=#{userId}
+    </update>
+
+    <update id="updateEmail">
+        update sys_user set email=#{email} where id=#{userId}
+    </update>
+    <update id="updatePwd">
+        update sys_user set password=#{password} where id=#{userId}
+    </update>
+
+</mapper>

@@ -1,0 +1,26 @@
+spring:
+  #数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    password: root
+    url: jdbc:mysql://localhost:3306/carsys?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+#配置thymeleaf引擎
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    servlet:
+      content-type: text/html
+
+#配置扫描mapper包
+mybatis:
+  mapper-locations: classpath:dao/*.xml
+  #配置全局映射
+  configuration:
+    auto-mapping-behavior: full
